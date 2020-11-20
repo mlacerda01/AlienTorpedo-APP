@@ -2,17 +2,17 @@ import 'package:alien_torpedo_app/Pages/UtilView.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:alien_torpedo_app/Services/EventoService.dart';
+import 'package:alien_torpedo_app/Services/TipoEventoService.dart';
 import 'package:alien_torpedo_app/Models/TipoEvento.dart';
 
-class TipoEventoView extends StatefulWidget {
+class CadastrarTipoEventoView extends StatefulWidget {
   @override
-  _TipoEventoViewState createState() => _TipoEventoViewState();
+  _CadastrarTipoEventoViewState createState() => _CadastrarTipoEventoViewState();
 }
 
-class _TipoEventoViewState extends State<TipoEventoView> {
+class _CadastrarTipoEventoViewState extends State<CadastrarTipoEventoView> {
 
-  EventoService _eventoService = new EventoService();
+  TipoEventoService _eventoService = new TipoEventoService();
   UtilView _utilViewService = UtilView();
 
   TextEditingController _controllerEvento = TextEditingController();
@@ -64,7 +64,8 @@ class _TipoEventoViewState extends State<TipoEventoView> {
 
                       } else{
 
-                        var response = await _eventoService.createTipoEvento(event);
+                        var response = await _eventoService.AdicionarTipoEvento(event);
+                        print(response.body);
                         _utilViewService.showDialog(context, 'Atenção!', response.body);
 
                       }

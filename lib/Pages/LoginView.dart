@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:alien_torpedo_app/Pages/UtilView.dart';
 import 'package:flutter/material.dart';
 import 'package:alien_torpedo_app/Services/UsuarioService.dart';
 
@@ -13,6 +14,7 @@ class _LoginViewState extends State<LoginView> {
   UsuarioService _usuarioService = UsuarioService();
   TextEditingController _controllerEmail = TextEditingController();
   TextEditingController _controllerPassword = TextEditingController();
+  UtilView _utilView = UtilView();
 
   bool _isEmailValid = false;
   bool _isPasswordValid = false;
@@ -120,17 +122,16 @@ class _LoginViewState extends State<LoginView> {
                   String email = _controllerEmail.value.text;
                   String password = _controllerPassword.value.text;
 
-                  Navigator.of(context).pushNamed('/home', arguments: null);
-                  // Navigator.pushNamed(context, '/home', arguments: null);
-                  // if(isDataValid(email, password)) {
-                  //   var response = await _usuarioService.AutenticarUsuario(email, password);
-                  //
-                  //   if(response['cdretorno'] == 0){
-                  //     Navigator.pushReplacementNamed(context, '/home', arguments: response);
-                  //   }else{
-                  //     _showDialog('Atenção', response['mensagem']);
-                  //   }
-                  // }
+                  if(isDataValid(email, password)) {
+                    var response = await _usuarioService.AutenticarUsuario(email, password);
+
+                    if(response['cdretorno'] == 0){
+                      Navigator.pushReplacementNamed(context, '/home', arguments: response);
+                    }else{
+                      // _utilView.showDialog(context,'Atenção', response['mensagem']);
+                      _showDialog('Atenção', response['mensagem']);
+                    }
+                  }
                 },
               ),
             ],

@@ -1,7 +1,7 @@
 import 'package:alien_torpedo_app/Models/TipoEvento.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:alien_torpedo_app/Services/EventoService.dart';
+import 'package:alien_torpedo_app/Services/TipoEventoService.dart';
 
 class TipoEventoListView extends StatefulWidget {
   @override
@@ -9,7 +9,7 @@ class TipoEventoListView extends StatefulWidget {
 }
 
 class _TipoEventoListViewState extends State<TipoEventoListView> {
-  EventoService _eventoService = new EventoService();
+  TipoEventoService _eventoService = new TipoEventoService();
   List<TipoEvento> lstTiposEvento = List<TipoEvento>();
 
   void _CarregarListTipoEvento() async{
@@ -54,13 +54,13 @@ class _TipoEventoListViewState extends State<TipoEventoListView> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 22.0, bottom: 22.0, right: 14.0, left: 14.0),
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(0.0),
-                              child: CircleAvatar(
-                                backgroundColor: Colors.green,
-                              ),
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(0.0),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.green,
+                            ),
                             ),
                             SizedBox(width: 10.0,),
                             Padding(

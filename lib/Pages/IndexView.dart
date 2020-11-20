@@ -43,7 +43,7 @@ class _IndexViewState extends State<IndexView> {
                       fontWeight: FontWeight.bold,
                   ),
                 ),
-                ),
+            ),
           ],
         ),
       ),
