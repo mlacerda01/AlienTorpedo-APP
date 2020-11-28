@@ -1,3 +1,4 @@
+import 'package:alien_torpedo_app/Pages/HeaderView.dart';
 import 'package:flutter/material.dart';
 
 import 'package:alien_torpedo_app/Pages/TipoEventoListView.dart';
@@ -24,24 +25,7 @@ class _HomeViewState extends State<HomeView> {
 
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        title: Text(
-          'Alien Torpedo',
-          style: TextStyle(color: Colors.white, fontSize: 16.0),
-        ),
-        backgroundColor: Colors.green,
-        centerTitle: true,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.account_circle),
-            tooltip: 'Account',
-            color: Colors.white,
-            onPressed: () {
-              Navigator.of(context).pushNamed('/editarUsuario', arguments: user);
-            },
-          )
-        ],
-      ),
+      appBar: HeaderHomePage(context),
       drawer: Drawer(
         child: ListView(
           // Important: Remove any padding from the ListView.

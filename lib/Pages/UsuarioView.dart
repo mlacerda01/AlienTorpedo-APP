@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:alien_torpedo_app/Pages/HeaderView.dart';
+
 class UsuarioView extends StatefulWidget {
   @override
   _UsuarioViewState createState() => _UsuarioViewState();
@@ -16,15 +18,7 @@ class _UsuarioViewState extends State<UsuarioView> {
     var usuario = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
+      appBar: Header(context, "Usuário"),
       body: Card(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),

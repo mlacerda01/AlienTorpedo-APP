@@ -9,10 +9,6 @@ class IndexView extends StatefulWidget {
 
 class _IndexViewState extends State<IndexView> {
 
-  void redirect(){
-      Navigator.pushReplacementNamed(context, '/login');
-  }
-
   @override
   void initState() {
     super.initState();
@@ -21,30 +17,60 @@ class _IndexViewState extends State<IndexView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  Colors.green,
+      // backgroundColor:  Colors.green[100],
       body: Container(
-        margin: EdgeInsets.fromLTRB(0, 200.0, 0, 0),
-        child: Column(
-          children: <Widget>[
-            SpinKitFoldingCube(
-              color: Colors.blueGrey,
-              size: 120.0,
-            ),
-            SizedBox(height: 30.0,),
-            FlatButton(
-                onPressed: (){
-                  redirect();
-                },
-                child: Text(
-                  'Login',
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+        margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
+        child: SafeArea(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                ButtonTheme(
+                  minWidth: 250.0,
+                  height: 46.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                  ),
+                  child: FlatButton(
+                    color: Colors.green,
+                    onPressed: (){
+                      Navigator.pushReplacementNamed(context, '/cadastrarUsuario');
+                    },
+                    child: Text(
+                      'Cadastrar',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
+                SizedBox(height: 8.0,),
+                ButtonTheme(
+                  minWidth: 250.0,
+                  height: 46.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                  ),
+                  child: FlatButton(
+                    color: Colors.green,
+                    onPressed: (){
+                      Navigator.pushReplacementNamed(context, '/login');
+                    },
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

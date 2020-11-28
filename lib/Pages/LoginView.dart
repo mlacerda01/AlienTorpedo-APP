@@ -14,7 +14,6 @@ class _LoginViewState extends State<LoginView> {
   UsuarioService _usuarioService = UsuarioService();
   TextEditingController _controllerEmail = TextEditingController();
   TextEditingController _controllerPassword = TextEditingController();
-  UtilView _utilView = UtilView();
 
   bool _isEmailValid = false;
   bool _isPasswordValid = false;
@@ -46,98 +45,79 @@ class _LoginViewState extends State<LoginView> {
     super.dispose();
   }
 
-  void _showDialog(title, message){
-    showDialog(
-        context: context,
-        builder: (BuildContext builder){
-          return AlertDialog(
-            title: Container(
-              child: Text(
-                '$title',
-                style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
-            content: Text(
-                "$message",
-                style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 16.0
-                ),
-            ),
-            actions: <Widget>[
-              FlatButton(
-                child: Text("OK"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              )
-            ],
-          );
-        },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.fromLTRB(20.0, 180.0, 20.0, 0),
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              TextField(
-                controller: _controllerEmail,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  icon: Icon(Icons.mail),
-                  labelText: 'E-mail',
-                  border: OutlineInputBorder(),
-                  errorText: _isEmailValid ? 'Value Can\'t Be Empty' : null
+      body: SafeArea(
+        child: Container(
+          margin: const EdgeInsets.all(10.0),
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                TextField(
+                  controller: _controllerEmail,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                      icon: Icon(Icons.mail),
+                      labelText: 'E-mail',
+                      border: OutlineInputBorder(),
+                      errorText: _isEmailValid ? 'Value Can\'t Be Empty' : null
+                  ),
                 ),
-              ),
-              SizedBox(height: 20.0,),
-              TextField(
-                controller: _controllerPassword,
-                obscureText: true,
-                keyboardType: TextInputType.text,
-                maxLength: 20,
-                decoration: InputDecoration(
-                  icon: Icon(Icons.lock),
-                  labelText: 'Password',
-                  border: OutlineInputBorder(),
-                  errorText: _isPasswordValid ? 'Value Can\'t Be Empty' : null,
+                SizedBox(height: 5.0,),
+                TextField(
+                  controller: _controllerPassword,
+                  obscureText: true,
+                  keyboardType: TextInputType.text,
+                  maxLength: 20,
+                  decoration: InputDecoration(
+                    icon: Icon(Icons.lock),
+                    labelText: 'Password',
+                    border: OutlineInputBorder(),
+                    errorText: _isPasswordValid ? 'Value Can\'t Be Empty' : null,
+                  ),
                 ),
-              ),
-              RaisedButton(
-                color: Colors.green,
-                elevation: 24.0,
-                child: Text(
-                    'Logar',
-                    style: TextStyle(color: Colors.white, fontSize: 14.0, fontWeight: FontWeight.bold),
-                ),
-                onPressed: () async {
-                  String email = _controllerEmail.value.text;
-                  String password = _controllerPassword.value.text;
+                ButtonTheme(
+                  minWidth: 250.0,
+                  height: 46.0,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.0)
+                  ),
+                  child: RaisedButton(
+                    color: Colors.green,
+                    elevation: 24.0,
+                    child: Text(
+                      'Logar',
+                      style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () async {
+                      String email = _controllerEmail.value.text;
+                      String password = _controllerPassword.value.text;
 
-                  if(isDataValid(email, password)) {
-                    var response = await _usuarioService.AutenticarUsuario(email, password);
+                      if(isDataValid(email, password)) {
+                        var response = await _usuarioService.AutenticarUsuario(email, password);
 
-                    if(response['cdretorno'] == 0){
-                      Navigator.pushReplacementNamed(context, '/home', arguments: response);
-                    }else{
-                      // _utilView.showDialog(context,'Atenção', response['mensagem']);
-                      _showDialog('Atenção', response['mensagem']);
-                    }
-                  }
-                },
-              ),
-            ],
+                        if(response['cdretorno'] == 0){
+                          Navigator.pushReplacementNamed(context, '/home', arguments: response);
+                        }else{
+                          showDialogMessage(context, 'Atenção', response['mensagem'].toString(), true);
+                        }
+                      }
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
+      ),
         ),
-      )
+      ),
     );
   }
 }

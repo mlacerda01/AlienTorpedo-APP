@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:alien_torpedo_app/Services/TipoEventoService.dart';
 import 'package:alien_torpedo_app/Models/TipoEvento.dart';
+import 'package:alien_torpedo_app/Pages/HeaderView.dart';
+import 'package:alien_torpedo_app/Pages/UtilView.dart';
 
 class CadastrarTipoEventoView extends StatefulWidget {
   @override
@@ -13,8 +15,6 @@ class CadastrarTipoEventoView extends StatefulWidget {
 class _CadastrarTipoEventoViewState extends State<CadastrarTipoEventoView> {
 
   TipoEventoService _eventoService = new TipoEventoService();
-  UtilView _utilViewService = UtilView();
-
   TextEditingController _controllerEvento = TextEditingController();
   bool _isTipoEventoValid = true;
 
@@ -27,19 +27,12 @@ class _CadastrarTipoEventoViewState extends State<CadastrarTipoEventoView> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[200],
-        appBar: AppBar(
-          backgroundColor: Colors.green,
-          centerTitle: true,
-          title: Text(
-            'Cadastrar Tipo Evento',
-            style: TextStyle(color: Colors.white, fontSize: 16.0),
-          ),
-        ),
+        appBar: Header(context, "Cadastrar Tipo Evento"),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
           child: Card(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
+              padding: const EdgeInsets.fromLTRB(10.0, 40.0, 10.0, 10.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -51,9 +44,10 @@ class _CadastrarTipoEventoViewState extends State<CadastrarTipoEventoView> {
                         errorText: !_isTipoEventoValid ? 'Value Can\'t Be Empty' : null
                     ),
                   ),
+                  SizedBox(height: 8.0,),
                   FlatButton(
-                    onPressed: () async {
 
+                    onPressed: () async {
                       TipoEvento event = new TipoEvento();
                       event.nmTipoEvento = _controllerEvento.value.text;
 
@@ -65,16 +59,14 @@ class _CadastrarTipoEventoViewState extends State<CadastrarTipoEventoView> {
                       } else{
 
                         var response = await _eventoService.AdicionarTipoEvento(event);
-                        print(response.body);
-                        _utilViewService.showDialog(context, 'Atenção!', response.body);
-
+                        showDialogMessage(context, 'Atenção', response.body, response.statusCode != 200);
                       }
                     },
                     color: Colors.green,
                     child: Text(
                         'Cadastrar',
                         style: TextStyle(
-                          fontSize: 14.0,
+                          fontSize: 16.0,
                           color: Colors.white
                         ),
                     ),

@@ -1,3 +1,4 @@
+import 'package:alien_torpedo_app/Pages/HeaderView.dart';
 import 'package:flutter/material.dart';
 
 class CadastrarEventoView extends StatefulWidget {
@@ -9,14 +10,7 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Texto'),
-        backgroundColor: Colors.green,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          color: Colors.white,
-        ),
-      ),
+      appBar: Header(context, "Cadastrar Evento"),
       body: Container(
         child: Text('aqui'),
       )

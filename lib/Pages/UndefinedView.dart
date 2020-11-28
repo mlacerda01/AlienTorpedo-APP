@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:alien_torpedo_app/Pages/HeaderView.dart';
+
 class UndefinedView extends StatelessWidget {
   final String name;
   const UndefinedView({Key key, this.name}) : super(key: key);
@@ -7,16 +9,7 @@ class UndefinedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          color: Colors.white,
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
+      appBar: Header(context, ""),
       body: Center(
         child: Text("Route for '$name' is not defined"),
       ),

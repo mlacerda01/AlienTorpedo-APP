@@ -34,6 +34,10 @@ class GrupoService{
 
     try{
       String url = _globalConfig.getValue('Url_AlienTorpedoAPI') + _globalConfig.getValue('cadastrar_grupos');
+
+      print('1 - obtendo url - AdicionarGrupo');
+      print(url);
+
       return await http.post(
           url,
           headers: <String, String>{
