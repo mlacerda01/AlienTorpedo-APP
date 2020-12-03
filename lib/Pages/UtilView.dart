@@ -61,8 +61,30 @@ Widget basicAddButton(context, String pageName, String buttonName){
             fontWeight: FontWeight.bold
         ),
       ),
-      color: Colors.green,
+      // color: Colors.green,
     ),
   );
+}
 
+Widget basicRedirectButton(context, routeName, buttonName, minWidth, height){
+  return ButtonTheme(
+    minWidth: minWidth,
+    height: height,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(18.0),
+    ),
+    child: FlatButton(
+      onPressed: (){
+        Navigator.pushReplacementNamed(context, "$routeName");
+      },
+      child: Text(
+        buttonName,
+        style: TextStyle(
+          fontSize: 18,
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
+  );
 }

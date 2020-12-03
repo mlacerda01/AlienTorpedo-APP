@@ -35,5 +35,12 @@ void main() async {
     builder: (context) => UndefinedView(
       name: settings.name,
     )),
+    theme: ThemeData(
+        primarySwatch: Colors.purple,
+        buttonColor: Colors.purple,
+        buttonTheme: const ButtonThemeData(
+          textTheme: ButtonTextTheme.primary,
+        )
+    ),
   ));
 }

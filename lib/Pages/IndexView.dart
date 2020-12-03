@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+import 'package:alien_torpedo_app/Pages/UtilView.dart';
 
 class IndexView extends StatefulWidget {
   @override
@@ -25,49 +26,9 @@ class _IndexViewState extends State<IndexView> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                ButtonTheme(
-                  minWidth: 250.0,
-                  height: 46.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                  ),
-                  child: FlatButton(
-                    color: Colors.green,
-                    onPressed: (){
-                      Navigator.pushReplacementNamed(context, '/cadastrarUsuario');
-                    },
-                    child: Text(
-                      'Cadastrar',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
+                basicRedirectButton(context, '/cadastrarUsuario', "Cadastrar", 250.0, 46.0),
                 SizedBox(height: 8.0,),
-                ButtonTheme(
-                  minWidth: 250.0,
-                  height: 46.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                  ),
-                  child: FlatButton(
-                    color: Colors.green,
-                    onPressed: (){
-                      Navigator.pushReplacementNamed(context, '/login');
-                    },
-                    child: Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
+                basicRedirectButton(context, '/login', "Login", 250.0, 46.0)
               ],
             ),
           ),
